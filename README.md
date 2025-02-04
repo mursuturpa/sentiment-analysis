@@ -1,170 +1,96 @@
-Sentiment Analysis Project
-This repository contains a full-stack sentiment analysis project. It includes:
 
-Jupyter Notebook: For data preprocessing, model fine-tuning, and experimentation.
-Backend (FastAPI or Flask): Serves a RESTful API for analyzing sentiment.
-React Front-End: A minimal example to interact with the backend.
-Table of Contents
-Project Overview
-Repository Structure
-Installation
-Running the Notebook Locally
-Running the API Locally
-Using the API Endpoints
-Running the React Front-End
-Project Overview
-This project showcases a sentiment analysis pipeline using a fine-tuned Hugging Face transformer model. The Jupyter Notebook demonstrates how to:
 
-Download and preprocess the IMDB dataset
-Fine-tune a model (e.g., DistilBERT) on the dataset
-Evaluate and save the trained model
-A FastAPI (or Flask) backend exposes the trained model via a REST API. A React UI provides a simple interface where users can input text, select a model, and see real-time sentiment predictions.
+1. A Jupyter Notebook for fine-tuning code and data preprocessing.
+2. Backend code for your API (e.g., FastAPI or Flask).
+3. React front-end code (or a minimal example) that interacts with your API.
 
-Repository Structure
-bash
-Kopioi
-Muokkaa
-.
-├── README.md
-├── requirements.txt            # Python dependencies
-├── sentiment_notebook.ipynb    # Jupyter notebook (fine-tuning, data processing)
-├── backend/
-│   ├── main.py                 # FastAPI or Flask application
-│   ├── requirements.txt        # Optional: separate backend requirements
-│   └── ...
-└── frontend/
-    ├── package.json
-    ├── src/
-    │   ├── App.js             # Main React component (UI logic)
-    │   └── index.js
-    └── ...
-sentiment_notebook.ipynb – Demonstrates dataset loading, preprocessing, and fine-tuning.
-backend/main.py – Contains the API (e.g., FastAPI) serving the sentiment analysis endpoint.
-frontend/ – Minimal React application for interacting with the backend.
-Installation
-Prerequisites
-Python 3.8+
-Node.js & npm (if you plan to run the React front-end locally)
-1. Clone the Repository
-bash
-Kopioi
-Muokkaa
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
-2. Install Python Dependencies
-In the project root or backend/ (wherever requirements.txt is located):
+---
 
-bash
-Kopioi
-Muokkaa
-pip install -r requirements.txt
-If you have a separate backend/requirements.txt, go into backend and run the same command.
+INSTALL DEPENDENCIES
 
-Running the Notebook Locally
-Navigate to the project directory:
-bash
-Kopioi
-Muokkaa
-cd <your-repo>
-Start Jupyter (or JupyterLab):
-bash
-Kopioi
-Muokkaa
-jupyter notebook
-or
-bash
-Kopioi
-Muokkaa
-jupyter lab
-Open sentiment_notebook.ipynb.
-Run all cells to:
-Download/preprocess the data.
-Fine-tune the model.
-Evaluate and save the model.
-Running the API Locally
-Navigate to the backend folder (or wherever your FastAPI/Flask app is):
-bash
-Kopioi
-Muokkaa
-cd <your-repo>/backend
-Run the application with uvicorn (for FastAPI):
-bash
-Kopioi
-Muokkaa
-uvicorn main:app --host 0.0.0.0 --port 8000
-If you’re using Flask, do something like:
-bash
-Kopioi
-Muokkaa
-python main.py
-The API will be available at:
-http://localhost:8000 (FastAPI)
-or
-http://localhost:5000 (Flask, if that’s your port).
-Using the API Endpoints
-Assuming the FastAPI endpoint is running at http://localhost:8000:
+1. **Python Environment**  
+   - Create and activate a virtual environment, or use your preferred environment setup.  
+   - Install Python dependencies (e.g., FastAPI, transformers, etc.).  
+     ```
+     pip install -r requirements.txt
+     ```
+     or list them in your own environment.yml/pyproject.toml.
 
-Swagger/OpenAPI Docs:
-Visit http://localhost:8000/docs in your browser to see interactive API docs.
+2. **React Front-End**  
+   - Navigate to the React front-end directory.  
+   - Install dependencies using npm or yarn:  
+     ```
+     npm install
+     ```
+     or
+     ```
+     yarn
+     ```
 
-Analyze Sentiment Endpoint (POST /analyze/):
+---
 
-Endpoint: http://localhost:8000/analyze/
-Example Request:
-bash
-Kopioi
-Muokkaa
-curl -X POST \
-     -H "Content-Type: application/json" \
-     -d '{"text": "I absolutely loved this film!", "model": "custom"}' \
-     http://localhost:8000/analyze/
-Example JSON Payload:
-json
-Kopioi
-Muokkaa
-{
-  "text": "I absolutely loved this film!",
-  "model": "custom"
-}
-Response:
-json
-Kopioi
-Muokkaa
-{
-  "sentiment": "positive",
-  "confidence": 0.9875
-}
-Running the React Front-End
-Navigate to the frontend folder:
-bash
-Kopioi
-Muokkaa
-cd <your-repo>/frontend
-Install dependencies:
-bash
-Kopioi
-Muokkaa
-npm install
-Start the development server:
-bash
-Kopioi
-Muokkaa
-npm start
-By default, React runs at http://localhost:3000.
-Make sure the backend is running at http://localhost:8000.
-The React app will call http://localhost:8000/analyze/ for sentiment analysis requests.
-Troubleshooting
-CORS Issues: If your React app is on port 3000 and backend is on 8000, add CORS middleware to the backend:
-python
-Kopioi
-Muokkaa
-from fastapi.middleware.cors import CORSMiddleware
+RUNNING THE NOTEBOOK AND API LOCALLY
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-API Keys: If you’re using external APIs (e.g., Groq Cloud), ensure your keys are set as environment variables.
+1. **Notebook**  
+   - Open your Jupyter Notebook (e.g., `sentiment_notebook.ipynb`) in Jupyter Lab, Jupyter Notebook, or Colab.  
+   - Run all cells to process data, train models, and/or interact with Hugging Face.
+
+2. **API**  
+   - In your terminal, go to the directory containing your main API file (e.g., `main.py`).  
+   - Start the server (FastAPI example):
+     ```
+     uvicorn main:app --host 0.0.0.0 --port 8000
+     ```
+   - Your API should be available at `http://localhost:8000`.
+
+3. **React Front-End**  
+   - In a separate terminal, go to your React front-end directory.  
+   - Start the development server:
+     ```
+     npm start
+     ```
+   - Open `http://localhost:3000` in your browser (by default) to interact with the UI.
+
+---
+
+USING THE ENDPOINTS
+
+1. **/analyze/** (POST)  
+   - **Request Body**:
+     ```json
+     {
+       "text": "Your text to analyze",
+       "model": "custom" // or "llama"
+     }
+     ```
+   - **Response**:
+     ```json
+     {
+       "sentiment": "positive" | "negative",
+       "confidence": 0.98
+     }
+     ```
+2. **Testing the Endpoints**:
+   - **curl**:
+     ```
+     curl -X POST \
+          -H "Content-Type: application/json" \
+          -d '{"text":"This is a great movie","model":"custom"}' \
+          http://localhost:8000/analyze/
+     ```
+   - **Python requests**:
+     ```python
+     import requests
+
+     response = requests.post(
+       "http://localhost:8000/analyze/",
+       json={"text":"This is a great movie","model":"custom"}
+     )
+     print(response.json())
+     ```
+   - **Postman**:
+     - Select **POST** method.
+     - Set **Content-Type** to **application/json**.
+     - Body → raw → insert JSON above.
+     - Click **Send** and view results.
+
