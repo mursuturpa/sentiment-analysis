@@ -1,0 +1,18 @@
+# Core dependencies
+fastapi==0.95.0
+uvicorn==0.22.0
+pydantic==1.10.4
+
+# Machine Learning and NLP
+transformers==4.30.2
+torch==2.0.1
+scikit-learn==1.2.2
+numpy==1.24.4
+pandas==1.5.3
+
+# Jupyter for running the notebook
+jupyterlab==4.0.3
+ipykernel==6.23.2
+
+# React development helpers (for CORS support)
+python-dotenv==1.0.0
